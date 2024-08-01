@@ -12,7 +12,7 @@ pip install gns3-gui
 # Execute this under virtual environment:
 gns3
 
-# In console, assign an ip to computer by running the following commands:
+# In console, assign an IP to computer by running the following commands:
 ip 192.168.1.1 255.255.255.0
 
 # For Virtual PC 2 onwards:
