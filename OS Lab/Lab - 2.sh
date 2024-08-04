@@ -1,4 +1,4 @@
-# ========== **Lab Exercises: (Part 1)** ==========
+# ========================== LAB EXERCISES: (PART 1) ==========================
 
 # 1. Try the following shell commands
 echo $HOME
@@ -32,7 +32,7 @@ chmod +x script.sh # change permission to executable
 ./script.sh Rahul Sachin Kumble # argument
 
 
-# ========== **Lab Exercises: (Part 2)** ==========
+# ========================== LAB EXERCISES: (PART 2) ==========================
 
 # 4. Try the following, which illustrates the usage of ps:
 (sleep 10; echo done) &
@@ -48,7 +48,7 @@ kill pid # pid is the process id of background process
 echo done 3; wait ; echo done 4
 
 
-# ========== **Lab Exercises: (Part 3)** ==========
+# ========================== LAB EXERCISES: (PART 3) ==========================
 
 # 7. List all the files under the given input directory, whose extension has only one character
 cat > ex3q1.sh
