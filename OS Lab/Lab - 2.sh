@@ -9,8 +9,8 @@ echo $SHELL
 echo $TERM
 
 # 2. Try the following snippet, which illustrates the difference between local and environment variable:
-firstname = Rakesh
-lastname = Sharma
+firstname=Rakesh
+lastname=Sharma
 echo $firstname $lastname
 export lastname # make it a global variable
 sh # start child shell
@@ -32,7 +32,7 @@ chmod +x script.sh # change permission to executable
 ./script.sh Rahul Sachin Kumble # argument
 
 
-# Lab Exercises: (Part 2)
+# ========== **Lab Exercises: (Part 2)** ==========
 
 # 4. Try the following, which illustrates the usage of ps:
 (sleep 10; echo done) &
@@ -48,7 +48,7 @@ kill pid # pid is the process id of background process
 echo done 3; wait ; echo done 4
 
 
-# Lab Exercises: (Part 3)
+# ========== **Lab Exercises: (Part 3)** ==========
 
 # 7. List all the files under the given input directory, whose extension has only one character
 cat > ex3q1.sh
