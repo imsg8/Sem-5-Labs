@@ -1,4 +1,4 @@
-# ========== Lab Exercises: (Part 1) ==========
+# ========== **Lab Exercises: (Part 1)** ==========
 
 # 1. Try the following shell commands
 echo $HOME
