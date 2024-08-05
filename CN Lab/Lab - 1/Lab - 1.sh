@@ -19,7 +19,7 @@ ip 192.168.1.1 255.255.255.0
 ip 192.168.1.2/24 # Change last decimal for consecutive PCs.
 
 # Ping a PC:
-ping 192.168.1.2 # Assuming you are PC1 right now.
+ping 192.168.1.2 # Assuming you are PC1 right now and pinging PC2.
 
 # To define number of packets to ping a PC:
 ping 192.168.1.2 -c 5 # Sends 5 packets to PC2.
