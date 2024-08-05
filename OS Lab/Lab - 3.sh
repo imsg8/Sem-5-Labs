@@ -2,7 +2,6 @@
 
 
 # 1. Find whether the given number is even or odd.
-
 echo "Enter a number:"
 read number
 if [ $((number % 2)) -eq 0 ]; then
@@ -13,7 +12,6 @@ fi
 
 
 # 2. Print the first ‘n’ odd numbers.
-
 echo "Enter the number of odd numbers to print:"
 read n
 count=0
@@ -26,7 +24,6 @@ done
 
 
 # 3. Find all the possible quadratic equation roots using case.
-
 #!/bin/bash
 echo "Enter coefficients for the quadratic equation ax^2 + bx + c"
 echo "Enter a:"
@@ -61,7 +58,6 @@ esac
 
 
 # 4. Find the factorial of a given number.
-
 #!/bin/bash
 echo "Enter number to find factorial of:"
 read n
@@ -80,7 +76,6 @@ echo "Factorial is $x"
 
 
 # 1. Print if a number is positive, negative or zero.
-
 echo "Enter a number:"
 read number
 if [ $number -lt 0 ]; then
@@ -93,7 +88,6 @@ fi
 
 
 # 2. Take a file as input and compile it if it is a C file.
-
 case $1 in
 *.c)
     cc $1
