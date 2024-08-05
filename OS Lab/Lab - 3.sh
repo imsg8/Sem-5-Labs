@@ -72,7 +72,10 @@ done
 echo "Factorial is $x"
 
 
+
+
 # ========================== EXTRA EXERCISES ==========================
+
 
 # 1. Print if a number is positive, negative or zero.
 echo "Enter a number:"
