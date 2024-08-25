@@ -10,3 +10,4 @@
 
 #define FIFO_NAME "my_fifo"
 #define BUFFER_SIZE 6
+#define fname "wow.txt"
