@@ -1,3 +1,4 @@
+#include"headers.h"
 int main() {
     int pipe_fd, res,j, O_RDONLY, buffer[BUFFER_SIZE+1], bytes_read = 0;
     printf("Process %d opening FIFO O_RDONLY\n",getpid());
