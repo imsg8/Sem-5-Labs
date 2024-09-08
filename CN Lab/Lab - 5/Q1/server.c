@@ -43,7 +43,8 @@ int main() {
         int unique_count = 0, frequency[256];
 
         struct sockaddr_in clientaddress;
-        int new_socket_id = accept(socket_id, (struct sockaddr *)&clientaddress, sizeof(clientaddress));
+        int socklen_t = sizeof(clientaddress);
+        int new_socket_id = accept(socket_id, (struct sockaddr *)&clientaddress, &socklen_t);
         
         read(new_socket_id, buffer, sizeof(buffer));
         if (strcmp(buffer, "Stop") == 0)
