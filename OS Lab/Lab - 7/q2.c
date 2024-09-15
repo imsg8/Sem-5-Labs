@@ -13,14 +13,14 @@ Status codes
 -1 -> exit
 */
  
-struct shared_str
+struct msgg
 {
     int status;
     char alphabet;
 };
  
 int main(int argc, char const *argv[]) {
-    int shmid = shmget((key_t)1234,sizeof(struct shared_str),0666|IPC_CREAT);
+    int shmid = shmget((key_t)1234,sizeof(struct msgg),0666|IPC_CREAT);
     pid_t pid = fork();
     
     if(pid < 0)  {
@@ -29,7 +29,7 @@ int main(int argc, char const *argv[]) {
     }
  
     else if(pid == 0) {
-        struct shared_str* shared_mem = shmat(shmid,(void*)0,0);
+        struct msgg* shared_mem = shmat(shmid,(void*)0,0);
         
         if(shared_mem == (void*)-1)  {
             printf("shmat() failed\n");
@@ -72,7 +72,7 @@ int main(int argc, char const *argv[]) {
     
     else { //parent process
         sleep(1);
-        struct shared_str* shared_mem = shmat(shmid,(void*)0,0);
+        struct msgg* shared_mem = shmat(shmid,(void*)0,0);
         
         if(shared_mem == (void*)-1) {
             printf("shmat() failed\n");
