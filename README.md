@@ -14,12 +14,7 @@ Welcome to the MIT CSE Sem-5 Lab Repository of Shivang Gulati! This repository c
 - **Description:** This section features code and exercises focused on Computer Networks.
 - **Update Schedule:** Updates will be made every **Thursday**.
 
-## Update Schedule
-
-- **Operating System Lab:** Updates every Monday.
-- **Computer Networks Lab:** Updates every Thursday.
-
-## Getting Started
+## Getting Started - Clone this repository!
 
 1. **Clone the Repository:**
 
