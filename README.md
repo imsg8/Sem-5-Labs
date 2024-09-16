@@ -24,3 +24,4 @@ Welcome to the MIT CSE Sem-5 Lab Repository of Shivang Gulati! This repository c
 1. **Clone the Repository:**
 
    ```bash
+   git clone git@github.com:imsg8/Sem-5-Labs.git
