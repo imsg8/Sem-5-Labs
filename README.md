@@ -22,3 +22,11 @@ Welcome to the MIT CSE Sem-5 Lab Repository of Shivang Gulati! This repository c
 
    ```bash
    git clone git@github.com:imsg8/Sem-5-Labs.git
+
+### Credits to DownGit
+
+A special thanks to DownGit for providing an easy way to download specific folders from GitHub repositories. If you find this feature useful, consider visiting their website: [DownGit](https://downgit.evecalm.com/#/home)
+
+The GitHub repository for DownGit is: [DownGit GitHub](https://github.com/MinhasKamal/DownGit)
+
+Special thanks to the creator of DownGit, Minhas Kamal. The GitHub profile of creator is: [GitHub - Minhas Kamal](https://github.com/MinhasKamal)
