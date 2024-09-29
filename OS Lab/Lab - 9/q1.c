@@ -2,28 +2,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int fibo[10];
-
-void* child_thread(void *param) {
-    int id = (int)param;
-    if (id == 0 || id == 1)
-        fibo[id] = id;
-    else {
-        fibo[id] = fibo[id - 1] + fibo[id - 2];
-    }
-    return (void *)id;
+int fib[100];
+void* child_thread(void* param) {
+    int id = (long)param;
+    fib[id] = (id < 2) ? id : fib[id - 1] + fib[id - 2];
+    return 0;
 }
-int main(int argc, char *argv[]) {
-    pthread_t thread[10];
-    int return_value[10];
-    int n;
-    n = atoi(argv[1]);
 
-    for (int i = 0; i < n; i++) {
-        pthread_create(&thread[i], 0, &child_thread, (void*)i);
-        pthread_join(thread[i], (void**)&return_value[i]);
-    }
-    printf("Fibo sequence: ");
+int main(int argc, char *argv[]) {
+    int n = atoi(argv[1]);
+    pthread_t thread[100];
     for (int i = 0; i < n; i++)
-        printf("%d ", fibo[i]);
+        pthread_create(&thread[i], 0, child_thread, (void*)(long)i);
+    for (int i = 0; i < n; i++)
+        pthread_join(thread[i], 0);
+    for (int i = 0; i < n; i++)
+        printf("%d ", fib[i]);
 }
