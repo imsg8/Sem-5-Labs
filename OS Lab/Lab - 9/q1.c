@@ -2,20 +2,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int fib[100];
+int fibo[10];
 
-void* child_thread(void * param) {
+void* child_thread(void *param) {
     int id = (int)param;
     if (id == 0 || id == 1)
-        fib[id] = id;
+        fibo[id] = id;
     else {
-        fib[id] = fib[id - 1] + fib[id - 2];
+        fibo[id] = fibo[id - 1] + fibo[id - 2];
     }
     return (void *)id;
 }
 int main(int argc, char *argv[]) {
-    pthread_t thread[100];
-    int return_value[100];
+    pthread_t thread[10];
+    int return_value[10];
     int n;
     n = atoi(argv[1]);
 
@@ -25,5 +25,5 @@ int main(int argc, char *argv[]) {
     }
     printf("Fibo sequence: ");
     for (int i = 0; i < n; i++)
-        printf("%d ", fib[i]);
+        printf("%d ", fibo[i]);
 }
