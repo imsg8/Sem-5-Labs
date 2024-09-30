@@ -1,39 +1,33 @@
+// Credits - Ashutosh Kumar Verma
+
 #include <pthread.h>
 #include <stdio.h>
+#include <stdint.h>
 
-int even_sum = 0, odd_sum = 0;
-
-void* evesum(void* param) {
-    int* arr = (int*)param;
-    for (int i = 0; i < arr[0]; i++)
-        if (arr[i + 1] % 2 == 0) even_sum += arr[i + 1];
-    return 0;
+int array[100];
+void* child_thread(void * param){
+    int* n = (int*)param;
+    int sum = 0;
+    for(int i;i<n[0];i++)
+        if(array[i]%2==n[1])
+            sum+=array[i];
+    return (void*)(intptr_t) sum;
 }
-
-void* oddsum(void* param) {
-    int* arr = (int*)param;
-    for (int i = 0; i < arr[0]; i++)
-        if (arr[i + 1] % 2 != 0) odd_sum += arr[i + 1];
-    return 0;
-}
-
-int main() {
-    pthread_t t1, t2;
-    int n, arr[100];
-    printf("Enter number of elements: ");
+int main(){
+    pthread_t thread[2];
+    int n;
+    void* sum[2];
+    printf("Enter number of array elements : ");
     scanf("%d", &n);
-    arr[0] = n;
-
-    printf("Enter the elements:\n");
-    for (int i = 1; i <= n; i++)
-        scanf("%d", &arr[i]);
-
-    pthread_create(&t1, 0, evesum, (void*)arr);
-    pthread_create(&t2, 0, sum_odd, (void*)arr);
-
-    pthread_join(t1, 0);
-    pthread_join(t2, 0);
-
-    printf("Sum of even numbers: %d\n", even_sum);
-    printf("Sum of odd numbers: %d\n", odd_sum);
+    printf("Enter array elements :\n");
+    for(int i=0;i<n;i++)
+        scanf("%d", &array[i]);
+    int odd[2] = {n, 1};
+    int even[2] = {n, 0};
+    pthread_create( &thread[0], 0, &child_thread, (void*)even);
+    pthread_create( &thread[1], 0, &child_thread, (void*)odd);
+    pthread_join(thread[0], &sum[0]);
+    pthread_join(thread[1], &sum[1]);
+    printf("Sum of even elements - %d\n", (int)(intptr_t)sum[0]);
+    printf("Sum of odd elements - %d\n", (int)(intptr_t)sum[1]);
 }
