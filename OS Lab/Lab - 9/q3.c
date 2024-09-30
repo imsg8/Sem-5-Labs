@@ -1,29 +1,31 @@
+// Credits - Ashutosh Kumar Verma
+
 #include <pthread.h>
 #include <stdio.h>
+#include <stdint.h>
 
-int n, pr[100];
-void* child_thread(void* param) {
-    int x = (long)param;
-    for (int i = 2; i < x; i++)
-        if (x % i == 0) return 0;
-    pr[n++] = x;
-    return 0;
+void* child_thread(void * param){
+	int n = (intptr_t)param;
+	int prime = 1;
+	for(int i=2;i<n;i++)
+		if(n%i==0){
+			prime = 0;
+			break;
+		}
+	if(prime == 1)
+		printf("%d ", n);
 }
-
-int main() {
-    pthread_t thread[100];
-    int l, u;
-    printf("Enter lower limit: ");
-    scanf("%d", &l);
-    printf("Enter upper limit: ");
-    scanf("%d", &u);
-
-    for (int i = l; i < u; i++) {
-        pthread_create(&thread[i - l], 0, child_thread, (void*)(long)i);
-        pthread_join(thread[i - l], 0);
-    }
-
-    printf("Prime Numbers in the range:\n");
-    for (int i = 0; i < n; i++)
-        printf("%d ", pr[i]);
+int main(){	
+	int f, r, n;
+	printf("Enter start point : ");
+	scanf("%d", &f);
+	printf("Enter end point : ");
+	scanf("%d", &r);
+	n = r-f+1;
+	pthread_t thread[n];
+	for(int i=0;i<n;i++)
+		pthread_create( &thread[i], 0, &child_thread, (void*)(intptr_t)(f+i));
+	for(int i=0;i<n;i++)
+		pthread_join(thread[i], 0);
+	printf("\n");
 }
