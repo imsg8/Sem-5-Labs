@@ -1,21 +1,27 @@
+// Credits - Ashutosh Kumar Verma
+
 #include <pthread.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 int fib[100];
-void* child_thread(void* param) {
-    int id = (long)param;
-    fib[id] = (id < 2) ? id : fib[id - 1] + fib[id - 2];
-    return 0;
-}
 
-int main(int argc, char *argv[]) {
-    int n = atoi(argv[1]);
-    pthread_t thread[100];
-    for (int i = 0; i < n; i++)
-        pthread_create(&thread[i], 0, child_thread, (void*)(long)i);
-    for (int i = 0; i < n; i++)
-        pthread_join(thread[i], 0);
-    for (int i = 0; i < n; i++)
-        printf("%d ", fib[i]);
+void* child_thread(void * param){
+    int *id = (int *)param;
+    fib[0] = 0;
+    fib[1] = 1;
+    for(int j=2;j<*id;j++)
+        fib[j] = fib[j-1] + fib[j-2];
+}
+int main(){
+    pthread_t thread;
+    int i;
+    printf("Enter number of fibbonaci sequence : ");
+    scanf("%d", &i);
+    pthread_create(&thread, 0, &child_thread, (void*)&i);
+    pthread_join(thread,0);
+    printf("Fibonacci sequence generated - \n");
+    for(int j=0;j<i;j++){
+        printf("%d ", fib[j]);
+    }
+    printf("\n");
 }
