@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define MAX_FRAMES 10
+#define max 10
 
 typedef struct {
     int page;
@@ -20,7 +20,7 @@ int main() {
     printf("Enter number of frames: ");
     scanf("%d", &n_frames);
 
-    Frame frames[MAX_FRAMES] = {{0, false}};
+    Frame frames[max] = {{0, false}};
 
     printf("Enter number of pages: ");
     scanf("%d", &n_pages);
