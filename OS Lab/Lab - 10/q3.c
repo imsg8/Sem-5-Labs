@@ -6,7 +6,7 @@ typedef struct {
     int limit;
 } SegTE;
 
-void initializeSegmentTable(SegTE table[]) {
+void initSegT(SegTE table[]) {
     table[0].base = 1400; table[0].limit = 1000;
     table[1].base = 6300; table[1].limit = 400;
     table[2].base = 4700; table[2].limit = 1200;
@@ -24,7 +24,7 @@ int logicalToPhysical(SegTE table[], int segment, int offset) {
 
 int main() {
     SegTE segmentTable[5];
-    initializeSegmentTable(segmentTable);
+    initSegT(segmentTable);
 
     printf("Physical address for 53 byte of segment 2: %d\n", 
            logicalToPhysical(segmentTable, 2, 53));
