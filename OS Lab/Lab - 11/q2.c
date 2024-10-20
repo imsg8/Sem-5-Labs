@@ -25,14 +25,14 @@ bool is_safe(int thread_id) {
     
     for (int i = 0; i < numth; i++) {
         if (!finish[i]) {
-            bool can_allocate = true;
+            bool canalloc = true;
             for (int j = 0; j < numres; j++) {
                 if (need[i][j] > work[j]) {
-                    can_allocate = false;
+                    canalloc = false;
                     break;
                 }
             }
-            if (can_allocate) {
+            if (canalloc) {
                 finish[i] = true;
                 for (int j = 0; j < numres; j++)
                     work[j] += allocation[i][j];
@@ -57,15 +57,15 @@ void* thread_function(void* arg) {
         
         pthread_mutex_lock(&lock);
         
-        bool can_allocate = true;
+        bool canalloc = true;
         for (int i = 0; i < numres; i++) {
             if (request[i] > avl[i] || request[i] > need[thread_id][i]) {
-                can_allocate = false;
+                canalloc = false;
                 break;
             }
         }
         
-        if (can_allocate) {
+        if (canalloc) {
             for (int i = 0; i < numres; i++) {
                 avl[i] -= request[i];
                 allocation[thread_id][i] += request[i];
