@@ -14,7 +14,7 @@ void initSegT(SegTE table[]) {
     table[4].base = 5700; table[4].limit = 600;
 }
 
-int logicalToPhysical(SegTE table[], int segment, int offset) {
+int logiToPhy(SegTE table[], int segment, int offset) {
     if (offset >= table[segment].limit) {
         printf("Error: Offset %d is out of bounds for segment %d\n", offset, segment);
         return -1;
@@ -27,11 +27,11 @@ int main() {
     initSegT(segmentTable);
 
     printf("Physical address for 53 byte of segment 2: %d\n", 
-           logicalToPhysical(segmentTable, 2, 53));
+           logiToPhy(segmentTable, 2, 53));
     printf("Physical address for 852 byte of segment 3: %d\n", 
-           logicalToPhysical(segmentTable, 3, 852));
+           logiToPhy(segmentTable, 3, 852));
     printf("Physical address for 1222 byte of segment 0: %d\n", 
-           logicalToPhysical(segmentTable, 0, 1222));
+           logiToPhy(segmentTable, 0, 1222));
 
     return 0;
 }
