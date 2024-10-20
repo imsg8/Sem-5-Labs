@@ -4,46 +4,41 @@
 typedef struct {
     int base;
     int limit;
-} Segment;
+} SegmentTableEntry;
 
-Segment segmentTable[5];
-
-void createSegmentTable() {
-    int bases[] = {1400, 6300, 4300, 3200, 4700};
-    int limits[] = {1000, 2000, 500, 400, 1100};
-    for (int i = 0; i < 5; i++) {
-        segmentTable[i].base = bases[i];
-        segmentTable[i].limit = limits[i];
-    }
+void initializeSegmentTable(SegmentTableEntry table[]) {
+    table[0].base = 1400; table[0].limit = 1000;
+    table[1].base = 6300; table[1].limit = 400;
+    table[2].base = 4700; table[2].limit = 1200;
+    table[3].base = 3400; table[3].limit = 1000;
+    table[4].base = 5700; table[4].limit = 600;
 }
 
-int translateAddress(int segmentNum, int offset) {
-    if (segmentNum < 0 || segmentNum > 4) {
-        printf("Invalid segment number\n");
+int logicalToPhysical(SegmentTableEntry table[], int segment, int offset) {
+    if (offset >= table[segment].limit) {
+        printf("Error: Offset %d is out of bounds for segment %d\n", offset, segment);
         return -1;
     }
-    if (offset >= segmentTable[segmentNum].limit) {
-        printf("Offset exceeds segment limit\n");
-        return -1;
-    }
-    return segmentTable[segmentNum].base + offset;
+    return table[segment].base + offset;
 }
 
 int main() {
-    createSegmentTable();
-    
-    int testCases[][2] = {{2, 53}, {3, 852}, {0, 1222}};
-    int numTestCases = sizeof(testCases) / sizeof(testCases[0]);
-    
-    for (int i = 0; i < numTestCases; i++) {
-        int segmentNum = testCases[i][0];
-        int offset = testCases[i][1];
-        int physicalAddress = translateAddress(segmentNum, offset);
-        if (physicalAddress != -1) {
-            printf("Logical Address: Segment %d, Offset %d\n", segmentNum, offset);
-            printf("Physical Address: %d\n\n", physicalAddress);
-        }
-    }
-    
+    SegmentTableEntry segmentTable[5];
+    initializeSegmentTable(segmentTable);
+
+    printf("Physical address for 53 byte of segment 2: %d\n", 
+           logicalToPhysical(segmentTable, 2, 53));
+    printf("Physical address for 852 byte of segment 3: %d\n", 
+           logicalToPhysical(segmentTable, 3, 852));
+    printf("Physical address for 1222 byte of segment 0: %d\n", 
+           logicalToPhysical(segmentTable, 0, 1222));
+
     return 0;
 }
+
+// SAMPLE INPUT - OUTPUT
+
+// Physical address for 53 byte of segment 2: 4753
+// Physical address for 852 byte of segment 3: 4252
+// Error: Offset 1222 is out of bounds for segment 0
+// Physical address for 1222 byte of segment 0: -1
