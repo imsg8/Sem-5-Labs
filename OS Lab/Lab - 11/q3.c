@@ -58,7 +58,7 @@ void SSTF(DSA reqs[], int n, int start) {
                    currpos, reqs[clstIdx].cyl, closest_dist, 
                    reqs[clstIdx].reqId, reqs[clstIdx].prid);
             currpos = reqs[clstIdx].cyl;
-            served[clstIdx] = 1; // Mark as served
+            served[clstIdx] = 1;
         }
     }
 
