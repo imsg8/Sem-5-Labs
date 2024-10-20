@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
-#define max 15
+
+#define maxp 15
 #define res 3
 
-int alloc[max][res], max[max][res], need[max][res], avail[res];
+int alloc[maxp][res], max[maxp][res], need[maxp][res], avail[res];
 
 void calcNeed(int n) {
     for (int i = 0; i < n; i++)
@@ -12,8 +13,8 @@ void calcNeed(int n) {
 }
 
 bool isSafe(int n) {
-    int work[res], safeSeq[max], count = 0;
-    bool finish[max] = {false};
+    int work[res], safeSeq[maxp], count = 0;
+    bool finish[maxp] = {false};
     
     for (int i = 0; i < res; i++) work[i] = avail[i];
 
