@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <stdbool.h>
+#include <unistd.h>
+#include <time.h>
 
 #define maxres 5
 #define maxt 10
@@ -86,10 +88,8 @@ void* thread_function(void* arg) {
         
         pthread_mutex_unlock(&lock);
         
-        // Simulate some work
         usleep(rand() % 1000000);
         
-        // Release some resources
         pthread_mutex_lock(&lock);
         for (int i = 0; i < num_resources; i++) {
             int release = rand() % (allocation[thread_id][i] + 1);
