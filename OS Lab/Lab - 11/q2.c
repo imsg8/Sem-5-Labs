@@ -146,3 +146,16 @@ int main() {
     
     return 0;
 }
+
+// SAMPLE INPUT
+
+// Enter the number of threads: 3
+// Enter the number of resources: 3
+// Enter the available resources:
+// 10 5 7
+// Enter the maximum resources for each thread:
+// 3 2 2
+// 6 1 3
+// 3 1 4
+
+// OUTPUT - DIY :p
