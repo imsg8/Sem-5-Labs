@@ -35,7 +35,7 @@ proc* dequeue(Queue* q) {
     return temp;
 }
 
-int roundRobin(Queue* q) {
+int rr(Queue* q) {
     proc* p = dequeue(q);
     if (!p) return 0;
     printf("RR: proc %d for %d units\n", p->id, q->quantum);
@@ -66,7 +66,7 @@ int fcfs(Queue* q) {
 }
 
 int main() {
-    Queue *q1 = createQueue(4, roundRobin), 
+    Queue *q1 = createQueue(4, rr), 
           *q2 = createQueue(8, pr), 
           *q3 = createQueue(0, fcfs);
 
