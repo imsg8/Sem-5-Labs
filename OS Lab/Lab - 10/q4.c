@@ -5,7 +5,7 @@
 
 typedef struct {
     int page;
-    bool second_chance;
+    bool secChnc;
 } Frame;
 
 int find_page(Frame *frames, int n_frames, int page) {
@@ -34,14 +34,14 @@ int main() {
 
         if (index == -1) {
             page_faults++;
-            while (frames[clock_hand].second_chance) {
-                frames[clock_hand].second_chance = false;
+            while (frames[clock_hand].secChnc) {
+                frames[clock_hand].secChnc = false;
                 clock_hand = (clock_hand + 1) % n_frames;
             }
             frames[clock_hand] = (Frame){pages[i], true};
             clock_hand = (clock_hand + 1) % n_frames;
         } else {
-            frames[index].second_chance = true;
+            frames[index].secChnc = true;
         }
     }
 
