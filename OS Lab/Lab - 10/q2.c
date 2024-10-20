@@ -84,3 +84,14 @@ int main() {
     free(q1); free(q2); free(q3);
     return 0;
 }
+
+// SAMPLE INPUT OUTPUT
+
+// RR: Process 1 for 4 units
+// RR: Process 2 for 4 units
+// RR: Process 1 for 4 units
+// PR: Process 4 (priority 1)
+// PR: Process 3 (priority 2)
+// RR: Process 1 for 2 units
+// FCFS: Process 5 completed
+
