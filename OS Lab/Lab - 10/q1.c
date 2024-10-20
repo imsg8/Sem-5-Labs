@@ -91,3 +91,23 @@ int main() {
 
     return 0;
 }
+
+// SAMPLE INPUT - OUTPUT
+
+// Memory Blocks:
+// Offset: 0, Size: 100, Free
+// Offset: 100, Size: 50, Allocated
+// Offset: 150, Size: 200, Free
+
+// Allocated 30 bytes at offset 0.
+// Memory Blocks:
+// Offset: 0, Size: 30, Allocated
+// Offset: 30, Size: 70, Free
+// Offset: 100, Size: 50, Allocated
+// Offset: 150, Size: 200, Free
+
+// Freed block at offset 100.
+// Memory Blocks:
+// Offset: 0, Size: 30, Allocated
+// Offset: 30, Size: 70, Free
+// Offset: 100, Size: 250, Free
