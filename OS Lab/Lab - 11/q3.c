@@ -10,92 +10,127 @@ typedef struct {
     int prid;
 } DSA;
 
-void FCFS(DSA requests[], int n, int start) {
-    int current_position = start;
-    int total_distance = 0;
+void FCFS(DSA reqs[], int n, int start) {
+    int currpos = start;
+    int total_dist = 0;
 
     printf("\nFCFS Disk Scheduling:\n");
-    printf("Move from %d to %d\n", current_position, requests[0].cyl);
+    printf("Move from %d to %d\n", currpos, reqs[0].cyl);
     
     for (int i = 0; i < n; i++) {
-        int distance = abs(current_position - requests[i].cyl);
-        total_distance += distance;
-        current_position = requests[i].cyl;
+        int dist = abs(currpos - reqs[i].cyl);
+        total_dist += dist;
+        currpos = reqs[i].cyl;
         printf("Move from %d to %d with Seek %d (Request ID: %d, Process ID: %d)\n",
-               current_position, requests[i].cyl, distance, requests[i].reqId, requests[i].prid);
+               currpos, reqs[i].cyl, dist, reqs[i].reqId, reqs[i].prid);
     }
 
-    printf("\nTotal Seek Time (FCFS): %d\n", total_distance);
-    float avg = (float)total_distance / n;
+    printf("\nTotal Seek Time (FCFS): %d\n", total_dist);
+    float avg = (float)total_dist / n;
     printf("Average Seek Time (FCFS): %f\n", avg);
 }
 
-void SSTF(DSA requests[], int n, int start) {
-    int current_position = start;
-    int total_distance = 0;
+void SSTF(DSA reqs[], int n, int start) {
+    int currpos = start;
+    int total_dist = 0;
     int served[n];
     for (int i = 0; i < n; i++) served[i] = 0;
 
     printf("\nSSTF Disk Scheduling:\n");
     
     for (int count = 0; count < n; count++) {
-        int closest_index = -1;
-        int closest_distance = INT_MAX;
+        int clstIdx = -1;
+        int closest_dist = INT_MAX;
 
         for (int i = 0; i < n; i++) {
             if (!served[i]) {
-                int distance = abs(current_position - requests[i].cyl);
-                if (distance < closest_distance) {
-                    closest_distance = distance;
-                    closest_index = i;
+                int dist = abs(currpos - reqs[i].cyl);
+                if (dist < closest_dist) {
+                    closest_dist = dist;
+                    clstIdx = i;
                 }
             }
         }
 
-        if (closest_index != -1) {
-            total_distance += closest_distance;
+        if (clstIdx != -1) {
+            total_dist += closest_dist;
             printf("Move from %d to %d with Seek %d (Request ID: %d, Process ID: %d)\n",
-                   current_position, requests[closest_index].cyl, closest_distance, 
-                   requests[closest_index].reqId, requests[closest_index].prid);
-            current_position = requests[closest_index].cyl;
-            served[closest_index] = 1; // Mark as served
+                   currpos, reqs[clstIdx].cyl, closest_dist, 
+                   reqs[clstIdx].reqId, reqs[clstIdx].prid);
+            currpos = reqs[clstIdx].cyl;
+            served[clstIdx] = 1; // Mark as served
         }
     }
 
-    printf("\nTotal Seek Time (SSTF): %d\n", total_distance);
-    float avg = (float)total_distance / n;
+    printf("\nTotal Seek Time (SSTF): %d\n", total_dist);
+    float avg = (float)total_dist / n;
     printf("Average Seek Time (SSTF): %f\n", avg);
 }
 
 int main() {
     int n;
-    printf("Enter the number of requests: ");
+    printf("Enter the number of reqs: ");
     scanf("%d", &n);
 
-    DSA *requests = malloc(n * sizeof(DSA));
+    DSA *reqs = malloc(n * sizeof(DSA));
 
     for (int i = 0; i < n; i++) {
         printf("Enter details for request %d:\n", i + 1);
         printf("Request ID: ");
-        scanf("%d", &requests[i].reqId);
+        scanf("%d", &reqs[i].reqId);
         printf("Arrival Time Stamp: ");
-        scanf("%d", &requests[i].arrtstamp);
+        scanf("%d", &reqs[i].arrtstamp);
         printf("Cylinder: ");
-        scanf("%d", &requests[i].cyl);
+        scanf("%d", &reqs[i].cyl);
         printf("Address: ");
-        scanf("%d", &requests[i].add);
+        scanf("%d", &reqs[i].add);
         printf("Process ID: ");
-        scanf("%d", &requests[i].prid);
+        scanf("%d", &reqs[i].prid);
         printf("\n \n");
     }
 
-    int start_position;
+    int strtpos;
     printf("Enter the starting position of the disk head: ");
-    scanf("%d", &start_position);
+    scanf("%d", &strtpos);
 
-    FCFS(requests, n, start_position);
-    SSTF(requests, n, start_position);
+    FCFS(reqs, n, strtpos);
+    SSTF(reqs, n, strtpos);
 
-    free(requests);
+    free(reqs);
     return 0;
 }
+
+// SAMPLE INPUT
+
+// Enter the number of reqs: 4
+// Enter details for request 1:
+// Request ID: 1
+// Arrival Time Stamp: 0
+// Cylinder: 45
+// Address: 1000
+// Process ID: 101
+
+// Enter details for request 2:
+// Request ID: 2
+// Arrival Time Stamp: 1
+// Cylinder: 30
+// Address: 2000
+// Process ID: 102
+
+// Enter details for request 3:
+// Request ID: 3
+// Arrival Time Stamp: 2
+// Cylinder: 10
+// Address: 3000
+// Process ID: 103
+
+// Enter details for request 4:
+// Request ID: 4
+// Arrival Time Stamp: 3
+// Cylinder: 75
+// Address: 4000
+// Process ID: 104
+
+// Enter the starting position of the disk head: 50
+
+// OUTPUT - DIY :p
