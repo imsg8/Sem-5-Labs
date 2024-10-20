@@ -4,9 +4,9 @@
 typedef struct {
     int base;
     int limit;
-} SegmentTableEntry;
+} SegTE;
 
-void initializeSegmentTable(SegmentTableEntry table[]) {
+void initializeSegmentTable(SegTE table[]) {
     table[0].base = 1400; table[0].limit = 1000;
     table[1].base = 6300; table[1].limit = 400;
     table[2].base = 4700; table[2].limit = 1200;
@@ -14,7 +14,7 @@ void initializeSegmentTable(SegmentTableEntry table[]) {
     table[4].base = 5700; table[4].limit = 600;
 }
 
-int logicalToPhysical(SegmentTableEntry table[], int segment, int offset) {
+int logicalToPhysical(SegTE table[], int segment, int offset) {
     if (offset >= table[segment].limit) {
         printf("Error: Offset %d is out of bounds for segment %d\n", offset, segment);
         return -1;
@@ -23,7 +23,7 @@ int logicalToPhysical(SegmentTableEntry table[], int segment, int offset) {
 }
 
 int main() {
-    SegmentTableEntry segmentTable[5];
+    SegTE segmentTable[5];
     initializeSegmentTable(segmentTable);
 
     printf("Physical address for 53 byte of segment 2: %d\n", 
