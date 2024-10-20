@@ -85,7 +85,7 @@ int main() {
     return 0;
 }
 
-// SAMPLE INPUT OUTPUT
+// SAMPLE INPUT - OUTPUT
 
 // RR: Process 1 for 4 units
 // RR: Process 2 for 4 units
