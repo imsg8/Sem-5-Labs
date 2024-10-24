@@ -200,8 +200,6 @@ This guide provides a detailed look at essential **Linux commands**, **pipes**, 
 
 # LAB - 2 
 
----
-
 ## Introduction to Shell Scripts
 A **shell script** is a sequence of Linux commands saved in a file that can be executed like a program. 
 Before executing a script, it is essential to **give it permission** to run using:
