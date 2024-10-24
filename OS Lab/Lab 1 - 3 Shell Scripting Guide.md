@@ -200,14 +200,6 @@ This guide provides a detailed look at essential **Linux commands**, **pipes**, 
 
 # LAB - 2 
 
-## Table of Contents
-1. [Introduction to Shell Scripts](#introduction-to-shell-scripts)
-2. [Script to Display First Argument and File Line Count](#script-to-display-first-argument-and-file-line-count)
-3. [Using Shell Patterns and Argument Expansion](#using-shell-patterns-and-argument-expansion)
-4. [Counting Number of Files with a Specific Pattern](#counting-number-of-files-with-a-specific-pattern)
-5. [Counting Regular Files using `ls` and `grep`](#counting-regular-files-using-ls-and-grep)
-6. [Combining Files and Sorting Unique Values](#combining-files-and-sorting-unique-values)
-
 ---
 
 ## Introduction to Shell Scripts
