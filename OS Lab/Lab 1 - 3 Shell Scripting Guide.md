@@ -492,3 +492,133 @@ done
 ## Example Summary  
 The examples provided demonstrate key shell scripting concepts such as conditionals, loops, and arithmetic operations. These fundamental syntaxes allow for automating tasks in Linux, facilitating system administration and process management. Understanding these will enable you to create powerful and flexible shell scripts for various operations.
 
+
+# Lab - 4
+
+## 1. `write()` System Call
+The `write` system call writes data to a file descriptor. It takes three parameters:
+```c
+#include <unistd.h>
+size_t write(int fildes, const void *buf, size_t nbytes);
+```
+- **`fildes`**: File descriptor.
+- **`buf`**: Buffer containing the data to write.
+- **`nbytes`**: Number of bytes to write.
+
+### Example:
+```c
+#include <unistd.h>
+#include <stdlib.h>
+
+int main() {
+    if (write(1, "Hello, world!\n", 13) != 13) {
+        write(2, "A write error occurred.\n", 24);
+    }
+    exit(0);
+}
+```
+
+---
+
+## 2. `read()` System Call
+Reads data from a file descriptor into a buffer.
+```c
+#include <unistd.h>
+size_t read(int fildes, void *buf, size_t nbytes);
+```
+- **`fildes`**: File descriptor to read from.
+- **`buf`**: Buffer to store the read data.
+- **`nbytes`**: Maximum number of bytes to read.
+
+---
+
+## 3. `open()` System Call
+Used to open a file and return a file descriptor.
+```c
+#include <fcntl.h>
+int open(const char *path, int oflags, mode_t mode);
+```
+- **`path`**: Path to the file.
+- **`oflags`**: Flags for opening the file (e.g., `O_RDONLY` for read-only).
+- **`mode`**: Permissions if the file is created.
+
+### Example:
+```c
+int fd = open("example.txt", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+```
+
+---
+
+## 4. `close()` System Call
+Closes an open file descriptor.
+```c
+#include <unistd.h>
+int close(int fildes);
+```
+- **`fildes`**: File descriptor to close.
+
+---
+
+## 5. `lseek()` System Call
+Moves the read/write file offset.
+```c
+#include <unistd.h>
+off_t lseek(int fildes, off_t offset, int whence);
+```
+- **`fildes`**: File descriptor.
+- **`offset`**: Byte offset to move.
+- **`whence`**: Starting point for offset (`SEEK_SET`, `SEEK_CUR`, `SEEK_END`).
+
+---
+
+## 6. `fork()` System Call
+Creates a new process.
+```c
+#include <sys/types.h>
+#include <unistd.h>
+pid_t fork(void);
+```
+- **Returns**: 
+  - `0` to the child process.
+  - Child's PID to the parent process.
+
+### Example:
+```c
+#include <unistd.h>
+#include <stdio.h>
+
+int main() {
+    pid_t pid = fork();
+    if (pid == 0) {
+        printf("This is the child process.\n");
+    } else {
+        printf("This is the parent process.\n");
+    }
+    return 0;
+}
+```
+
+---
+
+## 7. `getpid()` and `getppid()` System Calls
+Retrieve process identifiers.
+```c
+#include <sys/types.h>
+#include <unistd.h>
+
+pid_t getpid(void);   // Returns the current process ID.
+pid_t getppid(void);  // Returns the parent process ID.
+```
+
+---
+
+## Error Handling with `errno`
+When system calls fail, they return `-1` and set the `errno` variable with the appropriate error code. To use `errno`, include:
+```c
+#include <errno.h>
+```
+
+---
+
+## Conclusion
+These system calls form the foundation of Linux programming. Mastering them will enable you to perform various tasks, from file management to process control.
