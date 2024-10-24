@@ -2,7 +2,7 @@
 - [Lab - 5: Processes and Signals](#lab---5-processes-and-signals)
 - [Lab - 6: IPC – 1: Pipe, FIFO](#lab---6-ipc--1-pipe-fifo)
 - [Lab - 7: IPC – 2: Message Queue, Shared Memory](#lab---7-ipc--2-message-queue-shared-memory)
-- 
+  
 
 # Lab - 5: Processes and Signals
 
