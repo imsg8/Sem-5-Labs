@@ -222,7 +222,7 @@ This script prints the script name, a string using the first argument, and count
 ```bash
 cat > script.sh
 echo "First argument is $0"
-echo "Mihika loves $1"
+echo "World loves $1"
 echo "The number of lines in file $3 are `cat $3 | wc -l`"
 ```
 
