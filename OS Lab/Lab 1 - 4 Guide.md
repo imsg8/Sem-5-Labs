@@ -228,11 +228,11 @@ echo "The number of lines in file $3 are `cat $3 | wc -l`"
 
 ### **Usage:**
 ```bash
-./script.sh Shivang pasta.txt
+./script.sh User pasta.txt
 ```
 ### **Explanation:**
 - **`$0`**: Displays the script name.
-- **`$1`**: Displays the first argument passed (`Shivang` in this case).
+- **`$1`**: Displays the first argument passed (`User` in this case).
 - **`$3`**: Refers to the third argument (in this case, `pasta.txt`) and counts its lines.
 
 ---
@@ -240,7 +240,7 @@ echo "The number of lines in file $3 are `cat $3 | wc -l`"
 ## Using Shell Patterns and Argument Expansion
 The command-line shell can **expand patterns** before passing them to a script. When running:
 ```bash
-./script.sh /Users/shivanggulati/Desktop/cache *.[a-z]
+./script.sh /path/to/directory *.[a-z]
 ```
 This expands `*.[a-z]` to **all files** matching the pattern. However, only the **first file** (e.g., `a.c`) becomes `$2`.
 
@@ -267,7 +267,7 @@ ls *.[a-z]
 
 ### **Usage:**
 ```bash
-./script.sh /Users/shivanggulati/Desktop/cache
+./script.sh /path/to/directory
 ```
 
 If files like `a.c` and `a1.c` exist, they will be displayed.
