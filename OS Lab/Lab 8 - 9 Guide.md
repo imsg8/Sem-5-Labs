@@ -37,16 +37,100 @@ pthread_mutex_destroy(&mutex);  // Destroy
 
 ---
 
-### Semaphores
-- Semaphores manage access to shared resources and allow multiple threads to access simultaneously.
 
-#### Semaphore API Functions
-- **Initialization**: `sem_init(&sem, 0, 1);`
-- **Wait**: `sem_wait(&sem);`
-- **Post**: `sem_post(&sem);`
-- **Destroy**: `sem_destroy(&sem);`
+### Semaphores in C
+
+#### 1. What is `sem_t`?
+- **`sem_t`** is the data type used to declare semaphores in C.
+- Defined in `<semaphore.h>`.
+- Manages access to shared resources between threads or processes.
+
+```c
+#include <semaphore.h>
+sem_t semaphore;  // Declare a semaphore variable
+```
 
 ---
+
+#### 2. Semaphore Functions and Syntax
+
+#### **`sem_init`**: Initialize a semaphore
+```c
+int sem_init(sem_t *sem, int pshared, unsigned int value);
+```
+- **`sem`**: Pointer to the semaphore.
+- **`pshared`**: `0` for thread sharing, non-zero for process sharing.
+- **`value`**: Initial value of the semaphore.
+
+#### **`sem_wait`**: Decrement (wait) a semaphore
+```c
+int sem_wait(sem_t *sem);
+```
+- Blocks if the semaphore value is 0, otherwise decrements it.
+
+#### **`sem_post`**: Increment (signal) a semaphore
+```c
+int sem_post(sem_t *sem);
+```
+- Increments the semaphore value, possibly unblocking waiting threads.
+
+#### **`sem_destroy`**: Destroy a semaphore
+```c
+int sem_destroy(sem_t *sem);
+```
+- Frees resources associated with the semaphore.
+
+---
+
+#### 3. Example Program Using Semaphores
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <unistd.h>
+
+sem_t semaphore;
+
+void* task(void* arg) {
+    sem_wait(&semaphore);  // Wait
+    printf("Thread %ld is in the critical section
+", pthread_self());
+    sleep(1);  // Simulate work
+    sem_post(&semaphore);  // Signal
+    return NULL;
+}
+
+int main() {
+    pthread_t t1, t2;
+    sem_init(&semaphore, 0, 1);  // Initialize binary semaphore
+
+    pthread_create(&t1, NULL, task, NULL);
+    pthread_create(&t2, NULL, task, NULL);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+
+    sem_destroy(&semaphore);  // Cleanup
+    return 0;
+}
+```
+
+---
+
+#### 4. Key Concepts
+- **Binary Semaphore**: Initial value 1, used for mutual exclusion.
+- **Counting Semaphore**: Allows multiple threads to access resources concurrently.
+- **Blocking and Unblocking**: `sem_wait` blocks if value is 0; `sem_post` unblocks threads.
+- **Avoiding Deadlocks**: Proper semaphore usage prevents resource conflicts.
+
+---
+
+#### 5. Summary
+- **`sem_t`** is a key synchronization primitive for managing resource access.
+- Common functions: `sem_init`, `sem_wait`, `sem_post`, `sem_destroy`.
+- Use semaphores carefully to prevent deadlocks and ensure proper synchronization.
+
 
 ## 3. Data Races and Solutions
 A **data race** occurs when multiple threads access shared data without synchronization.
