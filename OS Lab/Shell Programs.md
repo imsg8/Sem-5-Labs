@@ -46,18 +46,33 @@ read a
 echo "Enter second number"
 read b
 echo "Enter operation (+, -, *, /)"
-read op
+read c
+ans=0
 
-case $op in
-    "+") echo "$((a + b))";;
-    "-") echo "$((a - b))";;
-    "*") echo "$((a * b))";;
-    "/") if (( b != 0 )); then
-            echo "$((a / b))"
-         else
-            echo "Division by zero error"
-         fi;;
-    *) echo "Invalid operation";;
+case $c in
+    "+")
+        ans=$((a+b))
+        echo "Answer is $ans"
+        ;;
+    "-")
+        ans=$((a-b))
+        echo "Answer is $ans"
+        ;;
+    "*")
+        ans=$((a*b))
+        echo "Answer is $ans"
+        ;;
+    "/")
+        if (( b==0 || b>a )); then
+            echo "Not allowed"
+        else
+            ans=$((a/b))
+            echo "Answer is $ans"
+        fi
+        ;;
+    *)
+        echo "Invalid"
+        ;;
 esac
 ```
 
