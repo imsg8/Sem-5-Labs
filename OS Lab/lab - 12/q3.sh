@@ -1,3 +1,5 @@
+// Credits - Komal Mathur
+
 if command -v dpkg > /dev/null; then
     echo "Listing installed packages on a Debian/Ubuntu-based system:"
     dpkg --get-selections | grep -v deinstall
