@@ -1,3 +1,5 @@
+// Credits - Komal Mathur
+
 if command -v rpm > /dev/null; then
     echo "Listing all installed RPM packages:"
     rpm -qa
